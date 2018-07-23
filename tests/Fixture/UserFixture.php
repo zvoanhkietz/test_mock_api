@@ -26,6 +26,8 @@ class UserFixture extends TestFixture{
             'Data set 1' => function(RequestInterface $req, array $options, $next){
                 $path = $req->getUri()->getPath();
                 $method = $req->getMethod();
+                
+                // compare request condition
                 if( $path == $this->_defaultPath && $method == 'GET'){
                     return new Response(200, ['Content-Type'=> 'applicaton/json'], 'test');
                 }
@@ -34,6 +36,8 @@ class UserFixture extends TestFixture{
             'Method not allow' => function(RequestInterface $req, array $options, $next){
                 $path = $req->getUri()->getPath();
                 $method = $req->getMethod();
+                
+                // compare request condition
                 if( $path == $this->_defaultPath && $method == 'POST'){
                     return new Response(405, ['Content-Type'=> 'applicaton/json'], 'Method not allow.');
                 }
