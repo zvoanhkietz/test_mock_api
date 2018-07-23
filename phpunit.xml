@@ -1,0 +1,17 @@
+<phpunit bootstrap="./tests/bootstrap.php">
+    <testsuites>
+        <testsuite name="SlimSkeleton">
+            <directory>tests</directory>
+        </testsuite>
+    </testsuites>
+
+    <listeners>
+        <listener
+            class="\Tests\Helper\Fixture\FixtureInjector"
+            file="tests/Helper/Fixture/FixtureInjector.php">
+            <arguments>
+                <object class="\Tests\Helper\Fixture\FixtureManager"/>
+            </arguments>
+        </listener>
+    </listeners>
+</phpunit>
