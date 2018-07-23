@@ -11,6 +11,12 @@ class UserFixture extends TestFixture{
      * @var type
      */
     protected $_apiName = 'UserClient';
+    
+    /**
+     *
+     * @var type
+     */
+    protected $_defaultPath = '/api/v1/test_get_users';
 
     /**
      * 
@@ -20,8 +26,7 @@ class UserFixture extends TestFixture{
             'Data set 1' => function(RequestInterface $req, array $options, $next){
                 $path = $req->getUri()->getPath();
                 $method = $req->getMethod();
-                if( $path   == '/api/v1/test_get_users' &&
-                    $method == 'GET'){
+                if( $path   == $this->_defaultPath && $method == 'GET'){
                     return new Response(200, ['Content-Type'=> 'applicaton/json'], 'test');
                 }
                 return $next($req, $options);
@@ -29,8 +34,7 @@ class UserFixture extends TestFixture{
             'Method not allow' => function(RequestInterface $req, array $options, $next){
                 $path = $req->getUri()->getPath();
                 $method = $req->getMethod();
-                if( $path   == '/api/v1/test_get_users' &&
-                    $method == 'POST'){
+                if( $path   == $this->_defaultPath && $method == 'POST'){
                     return new Response(405, ['Content-Type'=> 'applicaton/json'], 'Method not allow.');
                 }
                 return $next($req, $options);
