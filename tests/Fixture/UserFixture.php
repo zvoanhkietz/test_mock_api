@@ -25,6 +25,15 @@ class UserFixture extends TestFixture{
                     return new Response(200, ['Content-Type'=> 'applicaton/json'], 'test');
                 }
                 return $next($req, $options);
+            },
+            'Method not allow' => function(RequestInterface $req, array $options, $next){
+                $path = $req->getUri()->getPath();
+                $method = $req->getMethod();
+                if( $path   == '/api/v1/test_get_users' &&
+                    $method == 'POST'){
+                    return new Response(405, ['Content-Type'=> 'applicaton/json'], 'Method not allow.');
+                }
+                return $next($req, $options);
             }
         ];
     }
